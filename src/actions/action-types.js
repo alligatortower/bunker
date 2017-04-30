@@ -17,5 +17,5 @@ export const SYSTEMS = {
 }
 
 export const COMPLEX = {
-  INCREASE_VOLTAGE: 'INCREASE_VOLTAGE',
+  TRANSFER_CHARGE: 'TRANSFER_CHARGE',
 }

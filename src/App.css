@@ -2,23 +2,56 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+button {
+  background-color: inherit;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, .2);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.systems-list {
+  margin-top: 20px;
+}
+.systems-list .system {
+  display: inline-block;
   padding: 20px;
-  color: white;
+  position: relative;
 }
 
-.App-intro {
-  font-size: large;
+.system .on-off {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.on-off img {
+  width: 15px;
+  height: 15px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.on-off.on {
+  background-color: green;
+}
+
+.on-off.off {
+  background-color: red;
+}
+
+.resource-icon {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  padding: 2px;
+  background-color: white;
+  margin-bottom: -1px;
+}
+
+.water-system {
+  background-color: #47ddff;
+}
+
+.electrical-system {
+  background-color: #ffe70f;
 }
