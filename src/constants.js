@@ -1,11 +1,19 @@
 import * as types from './actions/action-types.js';
 
-export const energyToVoltageRate = 1.5;
+export const INITIAL_EXCHANGE_RATES = {
+  charge: {
+    storedCharge: .5,
+  },
+  storedCharge: {
+    charge: 1,
+  },
+};
 
 export const INITIAL_RESOURCES = {
-  energy: {
-    name: 'Energy',
+  storedCharge: {
+    name: 'Stored Charge',
     amount: 0,
+    max: 10,
     display: true,
   },
   water: {
@@ -23,24 +31,23 @@ export const INITIAL_RESOURCES = {
     amount: 0,
     display: false,
   }
-}
+};
 
 export const INITIAL_SYSTEMS = {
   ELECTRIC: {
     onAction: types.SYSTEMS.ELECTRIC.ON,
     offAction: types.SYSTEMS.ELECTRIC.OFF,
     tickActionType: types.SYSTEMS.ELECTRIC.TICK,
-    voltage: 1,
-    amperage: 0,
-    wattage: 0,
-    online: false,
     display: true,
+    charge: 0,
+    online: false,
     tickSpeed: 1000,
   },
   WATER: {
     onAction: types.SYSTEMS.WATER.ON,
     offAction: types.SYSTEMS.WATER.OFF,
     tickActionType: types.SYSTEMS.WATER.TICK,
+    display: true,
     flow: null,
     online: false,
     pressure: 0,

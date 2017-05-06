@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
 
+import OnOffButton from './OnOffButton.js';
+
+import chargeIcon from '../../media/watts.png';
+
 class ElectricalSystem extends Component {
   render() {
     var electrical = this.props.electrical;
     return (
-      <div className='electrical-system'>
+      <div className='system electrical-system'>
         <h2>Electrical System</h2>
-        <div>Voltage: {electrical.voltage}</div>
-        <div>Amperage: {electrical.amperage}</div>
-        <div>Wattage: {electrical.wattage}</div>
-        <div>Online: {electrical.online ? 'on' : 'off'}</div>
-        <button onClick={()=>{this.props.toggleOnline('ELECTRIC')}}>Toggle Online</button>
-        <button onClick={()=>{this.props.changeResourceAmount('energy', 1)}}>Hand Crank</button>
-        <button onClick={()=>{this.props.increaseVoltage(1)}}>Increase Voltage</button>
+        <OnOffButton
+          online={electrical.online}
+          onClick={()=>{this.props.toggleOnline('ELECTRIC')}}
+        />
+        <div>
+          <img className='resource-icon' src={chargeIcon} alt='charge icon' />
+          <span> : {electrical.charge}</span>
+        </div>
+        <button onClick={()=>{this.props.changeResourceAmount('storedCharge', 1)}}>Hand Crank</button>
+        <button onClick={()=>{this.props.transferCharge('stored', 1)}}>
+          <span>Store 1 </span>
+          <img className='resource-icon' src={chargeIcon} alt='charge icon' />
+        </button>
       </div>
     )
   }

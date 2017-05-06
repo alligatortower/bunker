@@ -1,4 +1,3 @@
-import { energyToVoltageRate } from '../constants.js';
 import * as types from './action-types.js';
 
 export const electricalTick = () => {
@@ -17,16 +16,30 @@ export const waterTick = () => {
   }
 }
 
-export const increaseVoltage = (energyChange=1) => {
+export const transferCharge = (direction='stored', change=1) => {
   return (dispatch, getState) => {
-    var currentEnergy = getState().resources.energy;
-    if (currentEnergy.amount >= energyChange) {
-      var voltageChange = energyChange*energyToVoltageRate;
-      dispatch({
-        type: types.COMPLEX.INCREASE_VOLTAGE,
-        energyChange: energyChange,
-        voltageChange: voltageChange,
-      })
+    const state = getState();
+    const currentCharge = state.systems.ELECTRIC.charge;
+    const currentStoredCharge = state.resources.storedCharge.amount;
+    const exchangeRates = state.exchangeRates;
+    var storedChargeChange;
+    var chargeChange;
+
+    if (direction === 'stored' && change <= currentCharge) {
+      chargeChange = change;
+      storedChargeChange = change*exchangeRates.charge.storedCharge;
     }
+    else if (direction === 'charge' && change <= currentStoredCharge) {
+      chargeChange = change*exchangeRates.storedCharge.charge;
+      storedChargeChange = change;
+    }
+    else {
+      return;
+    }
+    dispatch({
+      type: types.COMPLEX.TRANSFER_CHARGE,
+      storedChargeChange: storedChargeChange,
+      chargeChange: chargeChange,
+    })
   }
 }
