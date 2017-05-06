@@ -1,7 +1,18 @@
 import * as types from '../actions/action-types.js';
 import { INITIAL_RESOURCES } from '../constants.js';
 
+const getNewChargeAmount = (charge, change) => {
+  var startAmount = charge.amount;
+  var max = charge.max
+  var newAmount = startAmount + change;
+  newAmount = Math.max(newAmount, 0);
+  newAmount = Math.min(newAmount, max);
+  return newAmount;
+}
+
 export default (state = INITIAL_RESOURCES, action) => {
+  var storedCharge = Object.assign({}, state.storedCharge);
+  var newAmount;
   switch (action.type) {
 
     case types.RESOURCES.CHANGE_AMOUNT:
@@ -13,10 +24,7 @@ export default (state = INITIAL_RESOURCES, action) => {
       });
 
     case types.COMPLEX.TRANSFER_CHARGE:
-      var storedCharge = Object.assign({}, state.storedCharge);
-      var newAmount = storedCharge.amount + action.storedChargeChange;
-      newAmount = Math.max(newAmount, 0);
-      newAmount = Math.min(newAmount, storedCharge.max);
+      newAmount = getNewChargeAmount(storedCharge, action.storedChargeChange);
       storedCharge.amount = newAmount;
       return Object.assign({}, {
         ...state,

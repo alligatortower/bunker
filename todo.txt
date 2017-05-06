@@ -1,0 +1,2 @@
+Hello,
+You have just updated the electrical component "store" button to be a toggle. You need to rewire the action that fires when this button is clicked. You want it to change the "storing" attribute, and then in the tick you want it to transfer the charge based on that. Hope that makes sense to you, future me!

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import OnOffButton from './OnOffButton.js';
+import OnOffButton from './buttons/OnOffButton.js';
+import ToggleButton from './buttons/ToggleButton.js';
 
 import chargeIcon from '../../media/watts.png';
 
@@ -19,10 +20,13 @@ class ElectricalSystem extends Component {
           <span> : {electrical.charge}</span>
         </div>
         <button onClick={()=>{this.props.changeResourceAmount('storedCharge', 1)}}>Hand Crank</button>
-        <button onClick={()=>{this.props.transferCharge('stored', 1)}}>
-          <span>Store 1 </span>
-          <img className='resource-icon' src={chargeIcon} alt='charge icon' />
-        </button>
+        <ToggleButton
+          onClick={()=>{this.props.transferCharge('stored', 1)}}
+          on={electrical.storing}
+          onText={'Storing'}
+          offText={'Not Storing'}
+          icon={<img className='resource-icon' src={chargeIcon} alt='charge icon' />}
+        />
       </div>
     )
   }

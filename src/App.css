@@ -48,6 +48,14 @@ button:hover {
   margin-bottom: -1px;
 }
 
+.toggle-button.online {
+    background-color: green;
+}
+
+.toggle-button.offline {
+    background-color: transparent;
+}
+
 .water-system {
   background-color: #47ddff;
 }

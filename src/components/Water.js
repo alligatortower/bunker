@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import OnOffButton from './OnOffButton.js';
+import OnOffButton from './buttons/OnOffButton.js';
 
 class WaterSystem extends Component {
   render() {

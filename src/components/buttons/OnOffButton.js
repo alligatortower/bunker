@@ -1,5 +1,5 @@
 import React from 'react';
-import onOffPng from '../../media/on-off.png';
+import onOffPng from '../../../media/on-off.png';
 
 const OnOffButton = (props) => {
   var onOff = props.online ? 'on' : 'off';

@@ -25,13 +25,27 @@ export const waterTick = () => {
   }
 }
 
-export const toggleOnline = (systemName, force) => {
+export const toggleOnline = (systemName, online) => {
   return (dispatch, getState) => {
-    const system = getState().systems[systemName]
-    if (typeof(force) === 'undefined') {
-      force = !system.online;
+    const state = getState();
+    const system = state.systems[systemName];
+    const resources = state.resources;
+    if (typeof(online) === 'undefined') {
+      online = !system.online;
     }
-    var actionType = getActionType(systemName, force);
+    if (online && system.onResourceName && system.onResourceAmount) {
+      if (resources[system.onResourceName].amount >= system.onResourceAmount) {
+        dispatch({
+          type: types.RESOURCES.CHANGE_AMOUNT,
+          resourceType: system.onResourceName,
+          amount: -system.onResourceAmount
+        })
+      }
+      else {
+        return;
+      }
+    }
+    var actionType = getActionType(systemName, online);
     dispatch({
       type: actionType
     })
