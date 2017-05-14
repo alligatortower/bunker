@@ -1,0 +1,56 @@
+button {
+  padding: 5px;
+  background-color: inherit;
+  border: 1px solid black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .2);
+  }
+
+  img {
+    cursor: pointer;
+  }
+}
+
+.system .on-off {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  img {
+    width: 15px;
+    height: 15px;
+  }
+
+  &.on button {
+    background-color: green;
+  }
+
+  &.off button {
+    background-color: red;
+  }
+}
+
+
+.charge-needed-guage {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: black;
+  padding: 2px;
+  width: 10px;
+  margin-right: 1px;
+
+  .charge-has {
+    bottom: 0;
+    background-color: green;
+    height: 0;
+  }
+}
+
+.toggle-button.online {
+  background-color: green;
+}

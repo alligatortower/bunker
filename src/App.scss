@@ -1,0 +1,42 @@
+@import 'sass/variables';
+@import 'sass/buttons';
+.App {
+  text-align: center;
+}
+
+
+.systems-list {
+  margin-top: 100px;
+
+  .system {
+    display: inline-block;
+    padding: 20px;
+    position: relative;
+  }
+}
+
+.danger {
+  color: red;
+}
+
+.resource-icon {
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  padding: 2px;
+  background-color: white;
+  margin-bottom: -1px;
+
+  &.stored {
+    background-color: black;
+  }
+}
+
+
+.water-system {
+  background-color: #47ddff;
+}
+
+.electrical-system {
+  background-color: #ffe70f;
+}

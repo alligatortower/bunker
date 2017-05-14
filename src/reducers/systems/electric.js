@@ -8,6 +8,9 @@ export default (state = INITIAL_SYSTEMS.ELECTRIC, action) => {
   switch (action.type) {
     case types.SYSTEMS.ELECTRIC.TICK:
       electric.charge += 1
+      if (electric.storing) {
+
+      }
       newState = Object.assign({}, {
         ...electric
       });
@@ -22,6 +25,21 @@ export default (state = INITIAL_SYSTEMS.ELECTRIC, action) => {
 
     case types.SYSTEMS.ELECTRIC.OFF:
       electric.online = false;
+      electric.storing = false;
+      newState = Object.assign({}, {
+        ...electric
+      });
+      return newState
+
+    case types.SYSTEMS.ELECTRIC.OVERCHARGE:
+      electric.charge = 0;
+      newState = Object.assign({}, {
+        ...electric
+      });
+      return newState
+
+    case types.SYSTEMS.ELECTRIC.ADD_CHARGE:
+      electric.charge += action.amount;
       newState = Object.assign({}, {
         ...electric
       });
@@ -29,6 +47,13 @@ export default (state = INITIAL_SYSTEMS.ELECTRIC, action) => {
 
     case types.COMPLEX.TRANSFER_CHARGE:
       electric.charge -= action.chargeChange;
+      newState = Object.assign({}, {
+        ...electric
+      });
+      return newState
+
+    case types.SYSTEMS.ELECTRIC.TOGGLE_STORING:
+      electric.storing = !electric.storing;
       newState = Object.assign({}, {
         ...electric
       });

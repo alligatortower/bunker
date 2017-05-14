@@ -8,24 +8,29 @@ import chargeIcon from '../../media/watts.png';
 class ElectricalSystem extends Component {
   render() {
     var electrical = this.props.electrical;
+    var chargeClass = electrical.charge > electrical.maxCharge ? 'danger' : ''
+    var storeText = (
+      <span>Store 1: <img className='resource-icon stored' src={chargeIcon} alt='charge icon' /> for 2: <img className='resource-icon' src={chargeIcon} alt='charge icon' /> per tick</span>
+    )
     return (
       <div className='system electrical-system'>
         <h2>Electrical System</h2>
         <OnOffButton
           online={electrical.online}
-          onClick={()=>{this.props.toggleOnline('ELECTRIC')}}
+          onClick={()=>{this.props.toggleOnline()}}
+          onRatio={this.props.onRatio}
         />
         <div>
           <img className='resource-icon' src={chargeIcon} alt='charge icon' />
-          <span> : {electrical.charge}</span>
+          <span className={chargeClass}> : {electrical.charge} / {electrical.maxCharge}</span>
         </div>
-        <button onClick={()=>{this.props.changeResourceAmount('storedCharge', 1)}}>Hand Crank</button>
+        <button onClick={()=>{this.props.addCharge(1)}}>Hand Crank</button>
         <ToggleButton
-          onClick={()=>{this.props.transferCharge('stored', 1)}}
+          disabled={!electrical.online}
+          onClick={this.props.toggleStoring}
           on={electrical.storing}
-          onText={'Storing'}
-          offText={'Not Storing'}
-          icon={<img className='resource-icon' src={chargeIcon} alt='charge icon' />}
+          onContent={storeText}
+          offContent={storeText}
         />
       </div>
     )

@@ -12,8 +12,16 @@ const getNewChargeAmount = (charge, change) => {
 
 export default (state = INITIAL_RESOURCES, action) => {
   var storedCharge = Object.assign({}, state.storedCharge);
+  var water = Object.assign({}, state.water);
   var newAmount;
   switch (action.type) {
+
+    case types.SYSTEMS.WATER.TICK:
+      storedCharge.amount += -action.cost;
+      return Object.assign({}, {
+        ...state,
+        storedCharge: storedCharge,
+      });
 
     case types.RESOURCES.CHANGE_AMOUNT:
       var resource = Object.assign({}, state[action.resourceType]);
@@ -29,6 +37,15 @@ export default (state = INITIAL_RESOURCES, action) => {
       return Object.assign({}, {
         ...state,
         storedCharge: storedCharge,
+      });
+
+    case types.SYSTEMS.WATER.FILTER:
+      storedCharge.amount -= action.chargeCost;
+      water.amount += action.storedGain;
+      return Object.assign({}, {
+        ...state,
+        storedCharge: storedCharge,
+        water: water,
       });
 
     default:

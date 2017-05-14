@@ -1,65 +1,68 @@
-.App {
-  text-align: center;
-}
-
 button {
-  background-color: inherit;
   padding: 5px;
-  margin: 5px;
+  background-color: inherit;
   border: 1px solid black;
-}
-button:hover {
-  background-color: rgba(0, 0, 0, .2);
-}
-
-.systems-list {
-  margin-top: 20px;
-}
-.systems-list .system {
-  display: inline-block;
-  padding: 20px;
-  position: relative;
-}
+  cursor: pointer; }
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.2); }
+  button img {
+    cursor: pointer; }
 
 .system .on-off {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 5px;
   position: absolute;
   top: 0;
-  right: 0;
-}
-.on-off img {
-  width: 15px;
-  height: 15px;
-}
+  right: 0; }
+  .system .on-off img {
+    width: 15px;
+    height: 15px; }
+  .system .on-off.on button {
+    background-color: green; }
+  .system .on-off.off button {
+    background-color: red; }
 
-.on-off.on {
-  background-color: green;
-}
+.charge-needed-guage {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: black;
+  padding: 2px;
+  width: 10px;
+  margin-right: 1px; }
+  .charge-needed-guage .charge-has {
+    bottom: 0;
+    background-color: green;
+    height: 0; }
 
-.on-off.off {
-  background-color: red;
-}
+.toggle-button.online {
+  background-color: green; }
+
+.App {
+  text-align: center; }
+
+.systems-list {
+  margin-top: 100px; }
+  .systems-list .system {
+    display: inline-block;
+    padding: 20px;
+    position: relative; }
+
+.danger {
+  color: red; }
 
 .resource-icon {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border: 1px solid black;
   padding: 2px;
   background-color: white;
-  margin-bottom: -1px;
-}
-
-.toggle-button.online {
-    background-color: green;
-}
-
-.toggle-button.offline {
-    background-color: transparent;
-}
+  margin-bottom: -1px; }
+  .resource-icon.stored {
+    background-color: black; }
 
 .water-system {
-  background-color: #47ddff;
-}
+  background-color: #47ddff; }
 
 .electrical-system {
-  background-color: #ffe70f;
-}
+  background-color: #ffe70f; }

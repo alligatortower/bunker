@@ -1,7 +1,5 @@
 import { connect } from 'react-redux';
-import { changeResourceAmount } from '../actions/resources.js';
-import { transferCharge } from '../actions/complex.js';
-import { toggleOnline } from '../actions/systems.js';
+import { addCharge, toggleOnline, toggleElectricalOnline, toggleStoring } from '../actions/systems.js';
 import SystemsList from '../components/systems-list.js';
 
 const mapStateToProps = (state) => {
@@ -13,14 +11,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeResourceAmount: (name, amount) => {
-      dispatch(changeResourceAmount(name, amount))
+    addCharge: (amount) => {
+      dispatch(addCharge(amount))
     },
-    transferCharge: (energy) => {
-      dispatch(transferCharge(energy))
+    toggleStoring: () => {
+      dispatch(toggleStoring())
     },
-    toggleOnline: (systemName, force) => {
-      dispatch(toggleOnline(systemName, force))
+    toggleOnline: (systemName, on) => {
+      dispatch(toggleOnline(systemName, on))
+    },
+    toggleElectricalOnline: (on) => {
+      dispatch(toggleElectricalOnline(on))
     },
   }
 }

@@ -8,7 +8,7 @@ export default (state = INITIAL_SYSTEMS.WATER, action) => {
   switch (action.type) {
 
     case types.SYSTEMS.WATER.TICK:
-      water.pressure += 1
+      water.water += 1
       newState = Object.assign({}, {
         ...water
       });
@@ -23,6 +23,15 @@ export default (state = INITIAL_SYSTEMS.WATER, action) => {
 
     case types.SYSTEMS.WATER.OFF:
       water.online = false;
+      newState = Object.assign({}, {
+        ...water
+      });
+      return newState
+
+    case types.SYSTEMS.WATER.FILTER:
+      console.log(action)
+      water.water -= action.waterCost;
+
       newState = Object.assign({}, {
         ...water
       });
